@@ -1,5 +1,7 @@
 import React from 'react';
 import Style from './main.module.css';
+import Sound from '../sound/sound.mp3';
+import Win from '../sound/win.mp3';
 
 
 class Main extends React.Component {
@@ -13,6 +15,9 @@ class Main extends React.Component {
                 zero: Style.zero
             }
     }
+
+
+
     //функция проверяющая условия победы;
     isWinner = () => {
         // массив с выигрышными комбинациямиж
@@ -28,6 +33,7 @@ class Main extends React.Component {
             [0, 4, 8],
             [6, 4, 2]// диогональные линии;
         ]
+
 
             // прверка полей на выигрыш;
         let elem = this.state.count % 2 ===0 ? 'X' : 'O';
@@ -53,8 +59,8 @@ class Main extends React.Component {
                 && this.state.squares[currentLine[1]] === elem
                 && this.state.squares[currentLine[2]] === elem
             ){
-                //действия, при побеле какой-либо каманды;
-
+                //действия, при победе какой-либо каманды;
+                new Audio(Win).play();
                 setTimeout( () => {
                     alert(elem + ' Win!!!');
                 },100);  // вывод сообщениия о победе;
@@ -81,9 +87,12 @@ class Main extends React.Component {
             if(numberSquares[data] === null){
                 if(this.state.count % 2 ===0){
                     numberSquares[data]= 'X';
+                    new Audio(Sound).play();
                 }
                 else {
                     numberSquares[data] = 'O';
+                    // музыка хода;
+                    new Audio(Sound).play();
                 }
                 this.setState({count: this.state.count +1});
                 this.setState({squares: numberSquares});
