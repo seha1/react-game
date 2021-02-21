@@ -15,31 +15,58 @@ class Main extends React.Component {
     }
     //функция проверяющая условия победы;
     isWinner = () => {
+        // массив с выигрышными комбинациямиж
         let winLine = [
             [0, 1, 2],
             [3, 4, 5],
-            [6, 7, 8],
+            [6, 7, 8], // горизонтальные линии;
+
             [0, 3, 6],
             [1, 4, 7],
-            [2, 5, 8],
+            [2, 5, 8],// вертикальные линии;
+
             [0, 4, 8],
-            [6, 4, 3]
+            [6, 4, 2]// диогональные линии;
         ]
 
+            // прверка полей на выигрыш;
         let elem = this.state.count % 2 ===0 ? 'X' : 'O';
         for(let i = 0; i < winLine.length; i++){
             let currentLine = winLine[i];
-            if(this.state.squares[currentLine[0]] === elem
-                && this.state.squares[currentLine[1]] === elem
-                && this.state.squares[currentLine[2]] === elem
-            ){
-                alert(elem + ' Win!!!');
+
+            if(!this.state.squares.includes(null)){
+
+                // вывод сообщениия о ничьей;
+
+                setTimeout( () => {
+                    alert('Игра завершилась ничьей!');
+                },100);  // вывод сообщениия о ничьей;
+
                 setTimeout(() => {
                     this.setState({squares: Array(9).fill(null)});
                     this.setState({count: 0});
                 },3000);
-
+                break;// обнуление данных в стейте;
             }
+
+            if(this.state.squares[currentLine[0]] === elem
+                && this.state.squares[currentLine[1]] === elem
+                && this.state.squares[currentLine[2]] === elem
+            ){
+                //действия, при побеле какой-либо каманды;
+
+                setTimeout( () => {
+                    alert(elem + ' Win!!!');
+                },100);  // вывод сообщениия о победе;
+
+                setTimeout(() => {
+                    this.setState({squares: Array(9).fill(null)});
+                    this.setState({count: 0});
+                },3000);
+                break;// обнуление данных в стейте;
+            }
+
+
         }
     }
 
