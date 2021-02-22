@@ -11,12 +11,24 @@ class Main extends React.Component {
                 squares: Array(9).fill(null), //массив элементов игового поля
                 count: 1, // счетчик
                 style: Style.squareItem,
-                cross: Style.cross,
-                zero: Style.zero
+                onOf: 1
             }
+
+            this.isMute = this.isMute.bind(this);
     }
 
+    isMute = () => {
+        let elem = document.getElementById('sound').value;
+        this.setState((state) => {
+            return {onOf : elem}
+        });
+        console.log(this.state.onOf + ' : ' + elem );
 
+    }
+
+    isMUsic =() => {
+
+    }
 
     //функция проверяющая условия победы;
     isWinner = () => {
@@ -33,6 +45,8 @@ class Main extends React.Component {
             [0, 4, 8],
             [6, 4, 2]// диогональные линии;
         ]
+        let win = new Audio(Win);
+
 
 
             // прверка полей на выигрыш;
@@ -51,7 +65,7 @@ class Main extends React.Component {
                 setTimeout(() => {
                     this.setState({squares: Array(9).fill(null)});
                     this.setState({count: 0});
-                },3000);
+                },2000);
                 break;// обнуление данных в стейте;
             }
 
@@ -60,7 +74,11 @@ class Main extends React.Component {
                 && this.state.squares[currentLine[2]] === elem
             ){
                 //действия, при победе какой-либо каманды;
-                new Audio(Win).play();
+                if(this.state.onOf === 1){
+                    win.play();
+                }
+
+
                 setTimeout( () => {
                     alert(elem + ' Win!!!');
                 },100);  // вывод сообщениия о победе;
@@ -68,7 +86,7 @@ class Main extends React.Component {
                 setTimeout(() => {
                     this.setState({squares: Array(9).fill(null)});
                     this.setState({count: 0});
-                },3000);
+                },2000);
                 break;// обнуление данных в стейте;
             }
 
@@ -81,18 +99,29 @@ class Main extends React.Component {
     // функция событий реагирующая на действия игрока(ков);
     clickHandler = (e) => {
         let data = e.target.getAttribute('data');
+        let sound = new Audio(Sound);
         /*let item = document.getElementById(this.state.squares[data]).className;
         console.log(item);*/
         let numberSquares = this.state.squares;
             if(numberSquares[data] === null){
                 if(this.state.count % 2 ===0){
                     numberSquares[data]= 'X';
-                    new Audio(Sound).play();
+                    // музыка хода;
+                    /*this.state.onOf === 1 ? sound.play() : sound.volume = 0;*/
+                   if(this.state.onOf === 1){
+                        sound.play();
+                    }
+
                 }
                 else {
                     numberSquares[data] = 'O';
                     // музыка хода;
-                    new Audio(Sound).play();
+
+                    if(this.state.onOf === 1){
+                        sound.play();
+                    }
+
+
                 }
                 this.setState({count: this.state.count +1});
                 this.setState({squares: numberSquares});
@@ -101,26 +130,39 @@ class Main extends React.Component {
             alert('ошибка');
         }
         this.isWinner();
-
-
     }
+
 
     render() {
         return (
             <div className={Style.main}>
                 <div className={Style.wrapper}>
-                    <div className={Style.playingField}>
-                        <div className={this.state.style} data = '0' id = '1'  onClick={this.clickHandler}>{this.state.squares[0]}</div>
-                        <div className={this.state.style} data = '1' id = '2'  onClick={this.clickHandler}>{this.state.squares[1]}</div>
-                        <div className={this.state.style} data = '2' id = '3'  onClick={this.clickHandler}>{this.state.squares[2]}</div>
-                        <div className={this.state.style} data = '3' id = '4'  onClick={this.clickHandler}>{this.state.squares[3]}</div>
-                        <div className={this.state.style} data = '4' id = '5'  onClick={this.clickHandler}>{this.state.squares[4]}</div>
-                        <div className={this.state.style} data = '5' id = '6'  onClick={this.clickHandler}>{this.state.squares[5]}</div>
-                        <div className={this.state.style} data = '6' id = '7'  onClick={this.clickHandler}>{this.state.squares[6]}</div>
-                        <div className={this.state.style} data = '7' id = '8'  onClick={this.clickHandler}>{this.state.squares[7]}</div>
-                        <div className={this.state.style} data = '8' id = '9'  onClick={this.clickHandler}>{this.state.squares[8]}</div>
+                    <div className={Style.field}>
+
+                        <div className={Style.playingField}>
+                            <div className={this.state.style} data = '0' id = '1'  onClick={this.clickHandler}>{this.state.squares[0]}</div>
+                            <div className={this.state.style} data = '1' id = '2'  onClick={this.clickHandler}>{this.state.squares[1]}</div>
+                            <div className={this.state.style} data = '2' id = '3'  onClick={this.clickHandler}>{this.state.squares[2]}</div>
+                            <div className={this.state.style} data = '3' id = '4'  onClick={this.clickHandler}>{this.state.squares[3]}</div>
+                            <div className={this.state.style} data = '4' id = '5'  onClick={this.clickHandler}>{this.state.squares[4]}</div>
+                            <div className={this.state.style} data = '5' id = '6'  onClick={this.clickHandler}>{this.state.squares[5]}</div>
+                            <div className={this.state.style} data = '6' id = '7'  onClick={this.clickHandler}>{this.state.squares[6]}</div>
+                            <div className={this.state.style} data = '7' id = '8'  onClick={this.clickHandler}>{this.state.squares[7]}</div>
+                            <div className={this.state.style} data = '8' id = '9'  onClick={this.clickHandler}>{this.state.squares[8]}</div>
+
+                            <div className={Style.setting}>
+                                <div className={Style.sound}>
+                                    <span>Sound</span> <input type="range"  id = 'sound' onChange = {this.isMute} min = '0' max = '1' step = "1" />
+                                    <span>Music</span> <input type="range"  id = 'music' onChange = {this.isMUsic} min = '0' max = '1' step = "1" />
+                                </div>
+                            </div>
+
+                        </div>
 
                     </div>
+
+
+
                 </div>
             </div>
         )
