@@ -3,21 +3,31 @@
     width: 100vw;
     height: 100vh;
     background-color: #a08964;
+    font-family: 'Arial', sans-serif;
 
 }
 .wrapper{
     margin: 0 auto;
     width: 1024px;
     height: 100vh;
+    min-width: 500px;
     display: flex;
 
 }
+.field{
+    margin: 0 auto;
+    width: 320px;
+    height: 100vh;
+    min-width: 320px;
+
+}
+
 .playingField{
     margin: 200px auto;
     width: 300px;
     height: 300px;
     min-width: 300px;
-    max-height: 300px;
+    min-height: 300px;
     border: 6px solid #382f1d;
     display: flex;
     flex-wrap: wrap;
@@ -27,7 +37,7 @@
     width: 100px;
     height: 100px;
     min-width: 100px;
-    max-height: 100px;
+    min-height: 100px;
     border: 6px solid #382f1d;
     box-sizing: border-box;
     display: flex;
@@ -35,40 +45,42 @@
     align-items: center;
     font-size: 64px;
     font-weight: bold;
-    color: #bfa479;
+    color: #382f1d;
     cursor: pointer;
 
 }
-.cross{
-    width: 100px;
-    height: 100px;
-    min-width: 100px;
-    max-height: 100px;
-    border: 6px solid #382f1d;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 64px;
-    font-weight: bold;
-    color: #bfa479;
-    cursor: pointer;
-    background-image: url(../../src/img/cross.png);
+.setting{
+    margin: 20px auto;
+    width: 300px;
+    height: 200px;
+
 }
-.zero{
-    width: 100px;
-    height: 100px;
-    min-width: 100px;
-    max-height: 100px;
-    border: 6px solid #382f1d;
-    box-sizing: border-box;
+.sound{
+    margin: 20px auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 64px;
+    justify-content: space-between;
+    justify-items: center;
+}
+
+.sound span{
     font-weight: bold;
-    color: #bfa479;
+    font-size: 24px;
+    color: #382f1d;
+}
+
+input[type=range]{
+    appearance: none;
+    margin: 0 -106px;
+    background-color: #bfa479;
+    width: 48px;
+    height: 22px;
+    outline: none;
     cursor: pointer;
-    background-image: url(../img/zerro.png);
+}
+input[type=range]::-webkit-slider-thumb{
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background-color: #382f1d;
 }
 
