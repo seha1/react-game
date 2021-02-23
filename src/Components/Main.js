@@ -17,18 +17,7 @@ class Main extends React.Component {
             this.isMute = this.isMute.bind(this);
     }
 
-/*    isMute = () => {
-        let elem = document.getElementById('sound').value;
-        this.setState((state) => {
-            return {onOf : elem}
-        });
-        console.log(this.state.onOf + ' : ' + elem );
 
-    }*/
-
-    isMUsic =() => {
-
-    }
 
     //функция проверяющая условия победы;
     isWinner = () => {
@@ -49,15 +38,15 @@ class Main extends React.Component {
 
 
 
-            // прверка полей на выигрыш;
-        let elem = this.state.count % 2 ===0 ? 'X' : 'O';
+            // проверка полей на выигрыш;
+        let elem = this.state.count % 2 === 0 ? 'X' : 'O';
         for(let i = 0; i < winLine.length; i++){
             let currentLine = winLine[i];
 
+
+
             if(!this.state.squares.includes(null)){
-
                 // вывод сообщениия о ничьей;
-
                 setTimeout( () => {
                     alert('Игра завершилась ничьей!');
                 },100);  // вывод сообщениия о ничьей;
@@ -68,6 +57,7 @@ class Main extends React.Component {
                 },2000);
                 break;// обнуление данных в стейте;
             }
+
 
             if(this.state.squares[currentLine[0]] === elem
                 && this.state.squares[currentLine[1]] === elem
@@ -159,6 +149,9 @@ class Main extends React.Component {
                             <div className={Style.setting}>
                                 <div className={Style.sound}>
                                     <span>Sound</span><i>off</i><input type="range"  id = 'sound' onChange = {this.isMute} min = '0' max = '1' step = "1" /><i>on</i>
+                                </div>
+                                <div className={Style.newGameButton}>
+                                    <span>Start new game</span>
                                 </div>
                             </div>
                         </div>
