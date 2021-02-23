@@ -17,14 +17,14 @@ class Main extends React.Component {
             this.isMute = this.isMute.bind(this);
     }
 
-    isMute = () => {
+/*    isMute = () => {
         let elem = document.getElementById('sound').value;
         this.setState((state) => {
             return {onOf : elem}
         });
         console.log(this.state.onOf + ' : ' + elem );
 
-    }
+    }*/
 
     isMUsic =() => {
 
@@ -74,7 +74,7 @@ class Main extends React.Component {
                 && this.state.squares[currentLine[2]] === elem
             ){
                 //действия, при победе какой-либо каманды;
-                if(this.state.onOf === 1){
+                if(this.state.onOf != 0){
                     win.play();
                 }
 
@@ -94,6 +94,14 @@ class Main extends React.Component {
         }
     }
 
+    isMute = () => {
+        let elem = document.getElementById('sound').value;
+       this.setState((state) => {
+            return {onOf: elem}
+        });
+        console.log(this.state.onOf + ' : ' + elem);
+
+    }
 
 
     // функция событий реагирующая на действия игрока(ков);
@@ -108,7 +116,7 @@ class Main extends React.Component {
                     numberSquares[data]= 'X';
                     // музыка хода;
                     /*this.state.onOf === 1 ? sound.play() : sound.volume = 0;*/
-                   if(this.state.onOf === 1){
+                   if(this.state.onOf != 0){
                         sound.play();
                     }
 
@@ -117,7 +125,7 @@ class Main extends React.Component {
                     numberSquares[data] = 'O';
                     // музыка хода;
 
-                    if(this.state.onOf === 1){
+                    if(this.state.onOf != 0){
                         sound.play();
                     }
 
@@ -138,7 +146,6 @@ class Main extends React.Component {
             <div className={Style.main}>
                 <div className={Style.wrapper}>
                     <div className={Style.field}>
-
                         <div className={Style.playingField}>
                             <div className={this.state.style} data = '0' id = '1'  onClick={this.clickHandler}>{this.state.squares[0]}</div>
                             <div className={this.state.style} data = '1' id = '2'  onClick={this.clickHandler}>{this.state.squares[1]}</div>
@@ -149,25 +156,19 @@ class Main extends React.Component {
                             <div className={this.state.style} data = '6' id = '7'  onClick={this.clickHandler}>{this.state.squares[6]}</div>
                             <div className={this.state.style} data = '7' id = '8'  onClick={this.clickHandler}>{this.state.squares[7]}</div>
                             <div className={this.state.style} data = '8' id = '9'  onClick={this.clickHandler}>{this.state.squares[8]}</div>
-
                             <div className={Style.setting}>
                                 <div className={Style.sound}>
-                                    <span>Sound</span> <input type="range"  id = 'sound' onChange = {this.isMute} min = '0' max = '1' step = "1" />
-                                    <span>Music</span> <input type="range"  id = 'music' onChange = {this.isMUsic} min = '0' max = '1' step = "1" />
+                                    <span>Sound</span><i>off</i><input type="range"  id = 'sound' onChange = {this.isMute} min = '0' max = '1' step = "1" /><i>on</i>
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
-
-
-
                 </div>
             </div>
         )
     }
 }
+
 
 export default Main;
 
