@@ -11,7 +11,8 @@ class Main extends React.Component {
                 squares: Array(9).fill(null), //массив элементов игового поля
                 count: 1, // счетчик
                 style: Style.squareItem,
-                onOf: 1
+                onOf: 1,
+                color: ''
             }
 
             this.isMute = this.isMute.bind(this);
@@ -130,11 +131,30 @@ class Main extends React.Component {
         this.isWinner();
     }
 
+    isChange =() =>{
+        let color = document.getElementById('color').value;
+        this.setState({color: color})
+        console.log(this.state.color);
+        document.getElementById('main').style.backgroundColor = this.state.color;
+        document.getElementById('sound').style.backgroundColor = this.state.color;
+        document.getElementById('newGameButton').style.backgroundColor = this.state.color;
+    }
+
+    isNewGame =() => {
+        setTimeout(() => {
+            this.setState({squares: Array(9).fill(null)});
+            this.setState({count: 0});
+        },100);
+    }
+
 
     render() {
         return (
-            <div className={Style.main}>
+            <div className={Style.main} id = 'main'>
                 <div className={Style.wrapper}>
+                    <div className={Style.header}>
+                        <h1>tic tac toe</h1>
+                    </div>
                     <div className={Style.field}>
                         <div className={Style.playingField}>
                             <div className={this.state.style} data = '0' id = '1'  onClick={this.clickHandler}>{this.state.squares[0]}</div>
@@ -148,9 +168,12 @@ class Main extends React.Component {
                             <div className={this.state.style} data = '8' id = '9'  onClick={this.clickHandler}>{this.state.squares[8]}</div>
                             <div className={Style.setting}>
                                 <div className={Style.sound}>
-                                    <span>Sound</span><i>off</i><input type="range"  id = 'sound' onChange = {this.isMute} min = '0' max = '1' step = "1" /><i>on</i>
+                                    <span className={Style.span}>Sound</span><i>off</i><input type="range"  id = 'sound' onChange = {this.isMute} min = '0' max = '1' step = "1" /><i>on</i>
                                 </div>
-                                <div className={Style.newGameButton}>
+                                <div className={Style.color}>
+                                    <span className={Style.span}>Color</span><input type="color" id= 'color' onChange={this.isChange} defaultValue= '#bfa479' />
+                                </div>
+                                <div className={Style.newGameButton} onClick={this.isNewGame} id = 'newGameButton'>
                                     <span>Start new game</span>
                                 </div>
                             </div>
