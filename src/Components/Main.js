@@ -2,6 +2,7 @@ import React from 'react';
 import Style from './main.module.css';
 import Sound from '../sound/sound.mp3';
 import Win from '../sound/win.mp3';
+import Fon from  '../sound/fon.mp3';
 
 
 class Main extends React.Component {
@@ -12,10 +13,12 @@ class Main extends React.Component {
                 count: 1, // счетчик
                 style: Style.squareItem,
                 onOf: 1,
-                color: ''
+                color: '',
+                music: 5
             }
 
             this.isMute = this.isMute.bind(this);
+            this.isMusic = this.isMusic.bind(this);
     }
 
 
@@ -36,6 +39,8 @@ class Main extends React.Component {
             [6, 4, 2]// диогональные линии;
         ]
         let win = new Audio(Win);
+        let fon = new Audio(Fon);
+
 
 
 
@@ -86,14 +91,21 @@ class Main extends React.Component {
     }
 
     isMute = () => {
-        let elem = document.getElementById('sound').value;
+        let sound = document.getElementById('sound').value;
        this.setState((state) => {
-            return {onOf: elem}
+            return {onOf: sound}
         });
-        console.log(this.state.onOf + ' : ' + elem);
-
     }
 
+    isMusic =() => {
+        let music = document.getElementById('music').value;
+        this.setState((state) => {
+            return {music: music}
+        });
+        document.getElementById('music').value = this.state.music;
+        console
+            .log(document.getElementById('music').value);
+    }
 
     // функция событий реагирующая на действия игрока(ков);
     clickHandler = (e) => {
@@ -168,7 +180,10 @@ class Main extends React.Component {
                             <div className={this.state.style} data = '8' id = '9'  onClick={this.clickHandler}>{this.state.squares[8]}</div>
                             <div className={Style.setting}>
                                 <div className={Style.sound}>
-                                    <span className={Style.span}>Sound</span><i>off</i><input type="range"  id = 'sound' onChange = {this.isMute} min = '0' max = '1' step = "1" /><i>on</i>
+                                    <span className={Style.span}>Sound</span><i>off</i><input type="range"  className={Style.inputSound} id = 'sound' onChange = {this.isMute} min = '0' max = '1' step = "1" /><i>on</i>
+                                </div>
+                                <div className={Style.sound}>
+                                    <span className={Style.span}>Music</span><i>min</i><input type="range" className={Style.inputMusic} id = 'music' onChange = {this.isMusic} min = '0' max = '5' step = "1"/><i>max</i>
                                 </div>
                                 <div className={Style.color}>
                                     <span className={Style.span}>Color</span><input type="color" id= 'color' onChange={this.isChange} defaultValue= '#bfa479' />
