@@ -3,22 +3,23 @@ import Style from './main.module.css';
 import Sound from '../sound/sound.mp3';
 import Win from '../sound/win.mp3';
 import Fon from  '../sound/fon.mp3';
+import Logo from '../img/logo.png';
 
 
 class Main extends React.Component {
     constructor(props) {
         super(props);
-            this.state = {
-                squares: Array(9).fill(null), //массив элементов игового поля
-                count: 1, // счетчик
-                style: Style.squareItem,
-                onOf: 1,
-                color: '',
-                music: 5
-            }
+        this.state = {
+            squares: Array(9).fill(null), //массив элементов игового поля
+            count: 1, // счетчик
+            style: Style.squareItem,
+            onOf: 1,
+            color: '',
+            music: 5
+        }
 
-            this.isMute = this.isMute.bind(this);
-            this.isMusic = this.isMusic.bind(this);
+        this.isMute = this.isMute.bind(this);
+        this.isMusic = this.isMusic.bind(this);
     }
 
 
@@ -44,7 +45,7 @@ class Main extends React.Component {
 
 
 
-            // проверка полей на выигрыш;
+        // проверка полей на выигрыш;
         let elem = this.state.count % 2 === 0 ? 'X' : 'O';
         for(let i = 0; i < winLine.length; i++){
             let currentLine = winLine[i];
@@ -92,7 +93,7 @@ class Main extends React.Component {
 
     isMute = () => {
         let sound = document.getElementById('sound').value;
-       this.setState((state) => {
+        this.setState((state) => {
             return {onOf: sound}
         });
     }
@@ -103,8 +104,13 @@ class Main extends React.Component {
             return {music: music}
         });
         document.getElementById('music').value = this.state.music;
-        console
-            .log(document.getElementById('music').value);
+        /*if(this.state.music != 0){
+            fon.play();
+        }
+        else {
+            fon.volume = this.state.music;
+        }
+        console.log(document.getElementById('music').value);*/
     }
 
     // функция событий реагирующая на действия игрока(ков);
@@ -114,29 +120,29 @@ class Main extends React.Component {
         /*let item = document.getElementById(this.state.squares[data]).className;
         console.log(item);*/
         let numberSquares = this.state.squares;
-            if(numberSquares[data] === null){
-                if(this.state.count % 2 ===0){
-                    numberSquares[data]= 'X';
-                    // музыка хода;
-                    /*this.state.onOf === 1 ? sound.play() : sound.volume = 0;*/
-                   if(this.state.onOf != 0){
-                        sound.play();
-                    }
-
+        if(numberSquares[data] === null){
+            if(this.state.count % 2 ===0){
+                numberSquares[data]= 'X';
+                // музыка хода;
+                /*this.state.onOf === 1 ? sound.play() : sound.volume = 0;*/
+                if(this.state.onOf != 0){
+                    sound.play();
                 }
-                else {
-                    numberSquares[data] = 'O';
-                    // музыка хода;
 
-                    if(this.state.onOf != 0){
-                        sound.play();
-                    }
-
-
-                }
-                this.setState({count: this.state.count +1});
-                this.setState({squares: numberSquares});
             }
+            else {
+                numberSquares[data] = 'O';
+                // музыка хода;
+
+                if(this.state.onOf != 0){
+                    sound.play();
+                }
+
+
+            }
+            this.setState({count: this.state.count +1});
+            this.setState({squares: numberSquares});
+        }
         else{
             alert('ошибка');
         }
@@ -150,6 +156,7 @@ class Main extends React.Component {
         document.getElementById('main').style.backgroundColor = this.state.color;
         document.getElementById('sound').style.backgroundColor = this.state.color;
         document.getElementById('newGameButton').style.backgroundColor = this.state.color;
+        document.getElementById('music').style.backgroundColor = this.state.color;
     }
 
     isNewGame =() => {
@@ -194,11 +201,24 @@ class Main extends React.Component {
                             </div>
                         </div>
                     </div>
+                    <div className={Style.footer}>
+                        <div>
+                            <a href='https://github.com/seha1/react-game' target='_blank'>github</a>
+                        </div>
+
+                        <div>
+                            <a href='https://rs.school/js/' target='_blank'>
+                                <img className={Style.logo} src={Logo} />
+                            </a>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         )
     }
 }
+
 
 
 export default Main;

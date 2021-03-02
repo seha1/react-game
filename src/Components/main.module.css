@@ -169,4 +169,24 @@ input[type="color"]::-webkit-color-swatch-wrapper {
     background-color: #382f1d;
     color: #bfa479;
 }
+.footer{
+    margin: 0 auto;
+    width: 500px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.logo {
+    width: 50px;
+}
+.footer a {
+    transition:  all 0.2s;
+    text-decoration: none;
+    font-size: 14px;
+    color: #382f1d;
+}
 
+.footer a:hover{
+    transform: scale(0.1);
+}
