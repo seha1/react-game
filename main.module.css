@@ -1,0 +1,194 @@
+
+.main{
+    margin: 0 auto;
+    width: 100vw;
+    height: 100vh;
+    background-color: #a08964;
+    font-family: 'Arial', sans-serif;
+
+}
+.wrapper{
+    margin: 0 auto;
+    width: 1024px;
+    height: 100vh;
+    min-width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.header h1{
+    color: #382f1d;
+    font-size: 32px;
+}
+
+.field{
+    margin: 0 auto;
+    width: 320px;
+    height: 100vh;
+    min-width: 320px;
+}
+
+.playingField{
+    margin: 20px auto;
+    width: 300px;
+    height: 300px;
+    min-width: 300px;
+    min-height: 300px;
+    border: 6px solid #382f1d;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.squareItem{
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    min-height: 100px;
+    border: 6px solid #382f1d;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 64px;
+    font-weight: bold;
+    color: #382f1d;
+    cursor: pointer;
+
+}
+.setting{
+    margin: 20px auto;
+    width: 300px;
+    height: 200px;
+
+}
+.sound,
+.color{
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+}
+.sound i{
+    color: #382f1d;
+}
+
+.span{
+    font-weight: bold;
+    font-size: 24px;
+    color: #382f1d;
+}
+
+.inputSound{
+    appearance: none;
+    margin: 0 -73px;
+    background-color: #bfa479;
+    border: 4px solid #382f1d ;
+    width: 48px;
+    height: 22px;
+    outline: none;
+    cursor: pointer;
+}
+.inputSound::-webkit-slider-thumb{
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background-color: #382f1d;
+}
+
+.inputMusic{
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0px -34px;
+    background-color: #bfa479;
+    border: 4px solid #382f1d;
+    width: 114px;
+    height: 22px;
+    outline: none;
+    cursor: pointer;
+}
+.inputMusic::-webkit-slider-thumb{
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background-color: #382f1d;
+}
+
+input[type=color]{
+    appearance: none;
+    outline: none;
+    margin: 0 36px;
+    border: #382f1d;
+    width: 48px;
+    height: 22px;
+    cursor: pointer;
+    color: #382f1d;
+    background-color:#382f1d;
+    border: 2px solid #382f1d;
+    border-color:#382f1d;
+    -webkit-writing-mode: vertical-rl;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+
+.newGameButton{
+    margin: 30px auto;
+    width: 100%;
+}
+.newGameButton span{
+    margin: 0 auto;
+    display: block;
+    width: 300px;
+    height: 40px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #382f1d;
+    border: 6px solid #382f1d;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.newGameButton span:hover{
+    transition: all 0.2s;
+    border: 6px solid #382f1d;
+    color: #382f1d;
+}
+
+.newGameButton span:active{
+    transition: all 0.2s;
+    border: 6px solid transparent;
+    background-color: #382f1d;
+    color: #bfa479;
+}
+.footer{
+    margin: 0 auto;
+    width: 500px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.logo {
+    width: 50px;
+}
+.footer a {
+    transition:  all 0.2s;
+    text-decoration: none;
+    font-size: 14px;
+    color: #382f1d;
+}
+
+.footer a:hover{
+    transform: scale(0.1);
+}
+
+
