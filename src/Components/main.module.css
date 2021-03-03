@@ -8,7 +8,7 @@
 }
 .wrapper{
     margin: 0 auto;
-    width: 1024px;
+    max-width: 1024px;
     height: 100vh;
     min-width: 500px;
     display: flex;
@@ -16,7 +16,7 @@
 }
 .field{
     margin: 50px auto;
-    width: 500px;
+    max-width: 450px;
     height: 700px;
     min-width: 320px;
     display: flex;
