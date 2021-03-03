@@ -152,8 +152,7 @@ class Main extends React.Component {
     isChange =() =>{
         let color = document.getElementById('color').value;
         this.setState({color: color})
-        console.log(this.state.color);
-        document.getElementById('main').style.backgroundColor = this.state.color;
+        //document.getElementById('main').style.backgroundColor = this.state.color;
         document.getElementById('sound').style.backgroundColor = this.state.color;
         document.getElementById('newGameButton').style.backgroundColor = this.state.color;
         document.getElementById('music').style.backgroundColor = this.state.color;
@@ -170,11 +169,13 @@ class Main extends React.Component {
     render() {
         return (
             <div className={Style.main} id = 'main'>
+
                 <div className={Style.wrapper}>
-                    <div className={Style.header}>
-                        <h1>tic tac toe</h1>
-                    </div>
+
                     <div className={Style.field}>
+                        <div className={Style.header}>
+                            <h1>tic tac toe</h1>
+                        </div>
                         <div className={Style.playingField}>
                             <div className={this.state.style} data = '0' id = '1'  onClick={this.clickHandler}>{this.state.squares[0]}</div>
                             <div className={this.state.style} data = '1' id = '2'  onClick={this.clickHandler}>{this.state.squares[1]}</div>
@@ -200,20 +201,20 @@ class Main extends React.Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={Style.footer}>
-                        <div>
-                            <a href='https://github.com/seha1/react-game' target='_blank'>github</a>
-                        </div>
 
-                        <div>
-                            <a href='https://rs.school/js/' target='_blank'>
-                                <img className={Style.logo} src={Logo} />
-                            </a>
+                        <div className={Style.footer}>
+                            <div>
+                                <a href='https://github.com/seha1/react-game' target='_blank'>github</a>
+                            </div>
+                            <div>
+                                <a href='https://rs.school/js/' target='_blank'>
+                                    <img className={Style.logo} src={Logo} />
+                                </a>
+                            </div>
                         </div>
-
                     </div>
                 </div>
+
             </div>
         )
     }

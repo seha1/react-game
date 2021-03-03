@@ -153,7 +153,8 @@ class Main extends React.Component {
         let color = document.getElementById('color').value;
         this.setState({color: color})
         console.log(this.state.color);
-        document.getElementById('main').style.backgroundColor = this.state.color;
+        //document.getElementById('main').style.backgroundColor = this.state.color;
+        document.getElementById('field').style.backgroundColor = this.state.color;
         document.getElementById('sound').style.backgroundColor = this.state.color;
         document.getElementById('newGameButton').style.backgroundColor = this.state.color;
         document.getElementById('music').style.backgroundColor = this.state.color;
@@ -171,45 +172,50 @@ class Main extends React.Component {
         return (
             <div className={Style.main} id = 'main'>
                 <div className={Style.wrapper}>
-                    <div className={Style.header}>
-                        <h1>tic tac toe</h1>
-                    </div>
-                    <div className={Style.field}>
-                        <div className={Style.playingField}>
-                            <div className={this.state.style} data = '0' id = '1'  onClick={this.clickHandler}>{this.state.squares[0]}</div>
-                            <div className={this.state.style} data = '1' id = '2'  onClick={this.clickHandler}>{this.state.squares[1]}</div>
-                            <div className={this.state.style} data = '2' id = '3'  onClick={this.clickHandler}>{this.state.squares[2]}</div>
-                            <div className={this.state.style} data = '3' id = '4'  onClick={this.clickHandler}>{this.state.squares[3]}</div>
-                            <div className={this.state.style} data = '4' id = '5'  onClick={this.clickHandler}>{this.state.squares[4]}</div>
-                            <div className={this.state.style} data = '5' id = '6'  onClick={this.clickHandler}>{this.state.squares[5]}</div>
-                            <div className={this.state.style} data = '6' id = '7'  onClick={this.clickHandler}>{this.state.squares[6]}</div>
-                            <div className={this.state.style} data = '7' id = '8'  onClick={this.clickHandler}>{this.state.squares[7]}</div>
-                            <div className={this.state.style} data = '8' id = '9'  onClick={this.clickHandler}>{this.state.squares[8]}</div>
-                            <div className={Style.setting}>
-                                <div className={Style.sound}>
-                                    <span className={Style.span}>Sound</span><i>off</i><input type="range"  className={Style.inputSound} id = 'sound' onChange = {this.isMute} min = '0' max = '1' step = "1" /><i>on</i>
-                                </div>
-                                <div className={Style.sound}>
-                                    <span className={Style.span}>Music</span><i>min</i><input type="range" className={Style.inputMusic} id = 'music' onChange = {this.isMusic} min = '0' max = '5' step = "1"/><i>max</i>
-                                </div>
-                                <div className={Style.color}>
-                                    <span className={Style.span}>Color</span><input type="color" id= 'color' onChange={this.isChange} defaultValue= '#bfa479' />
-                                </div>
-                                <div className={Style.newGameButton} onClick={this.isNewGame} id = 'newGameButton'>
-                                    <span>Start new game</span>
-                                </div>
-                            </div>
+                    <div className={Style.field} id = 'field'>
+
+                        <div className={Style.header}>
+                         <h1>tic tac toe</h1>
                         </div>
-                    </div>
-                    <div className={Style.footer}>
-                        <div>
-                            <a href='https://github.com/seha1/react-game' target='_blank'>github</a>
+                            <div className={Style.wrapperField}>
+                                <div className={Style.playingField}>
+                                    <div className={this.state.style} data = '0' id = '1'  onClick={this.clickHandler}>{this.state.squares[0]}</div>
+                                    <div className={this.state.style} data = '1' id = '2'  onClick={this.clickHandler}>{this.state.squares[1]}</div>
+                                    <div className={this.state.style} data = '2' id = '3'  onClick={this.clickHandler}>{this.state.squares[2]}</div>
+                                    <div className={this.state.style} data = '3' id = '4'  onClick={this.clickHandler}>{this.state.squares[3]}</div>
+                                    <div className={this.state.style} data = '4' id = '5'  onClick={this.clickHandler}>{this.state.squares[4]}</div>
+                                    <div className={this.state.style} data = '5' id = '6'  onClick={this.clickHandler}>{this.state.squares[5]}</div>
+                                    <div className={this.state.style} data = '6' id = '7'  onClick={this.clickHandler}>{this.state.squares[6]}</div>
+                                    <div className={this.state.style} data = '7' id = '8'  onClick={this.clickHandler}>{this.state.squares[7]}</div>
+                                    <div className={this.state.style} data = '8' id = '9'  onClick={this.clickHandler}>{this.state.squares[8]}</div>
+                                    <div className={Style.setting}>
+                                        <div className={Style.sound}>
+                                            <span className={Style.span}>Sound</span><i>off</i><input type="range"  className={Style.inputSound} id = 'sound' onChange = {this.isMute} min = '0' max = '1' step = "1" /><i>on</i>
+                                        </div>
+                                        <div className={Style.sound}>
+                                            <span className={Style.span}>Music</span><i>min</i><input type="range" className={Style.inputMusic} id = 'music' onChange = {this.isMusic} min = '0' max = '5' step = "1"/><i>max</i>
+                                        </div>
+                                        <div className={Style.color}>
+                                            <span className={Style.span}>Color</span><input type="color" id= 'color' onChange={this.isChange} defaultValue= '#B7B0A4' />
+                                        </div>
+                                        <div className={Style.newGameButton} onClick={this.isNewGame} id = 'newGameButton'>
+                                            <span>Start new game</span>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
 
-                        <div>
-                            <a href='https://rs.school/js/' target='_blank'>
-                                <img className={Style.logo} src={Logo} />
-                            </a>
+                        <div className={Style.footer}>
+                            <div>
+                                <a href='https://github.com/seha1/react-game' target='_blank'>github</a>
+                            </div>
+
+                            <div>
+                                <a href='https://rs.school/js/' target='_blank'>
+                                    <img className={Style.logo} src={Logo} />
+                                </a>
+                            </div>
+
                         </div>
 
                     </div>
